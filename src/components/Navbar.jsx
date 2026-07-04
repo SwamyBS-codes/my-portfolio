@@ -39,11 +39,16 @@ const Navbar = ({ toggleTerminal, isTerminalOpen }) => {
   }, []);
 
   const scrollTo = (id) => {
+    const wasOpen = isOpen;
     setIsOpen(false);
-    const element = document.getElementById(id);
-    if (element) {
-      element.scrollIntoView({ behavior: 'smooth' });
-    }
+    
+    // Delay scroll on mobile to allow the drawer collapse animation (300ms) to complete
+    setTimeout(() => {
+      const element = document.getElementById(id);
+      if (element) {
+        element.scrollIntoView({ behavior: 'smooth' });
+      }
+    }, wasOpen ? 300 : 0);
   };
 
   return (
