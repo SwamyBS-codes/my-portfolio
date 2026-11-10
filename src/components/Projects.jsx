@@ -12,8 +12,12 @@ import P2pThroughputSimulator from './P2pThroughputSimulator';
 import DatabaseSchema from './DatabaseSchema';
 import WebrtcHandshake from './WebrtcHandshake';
 import KcetSimulator from './KcetSimulator';
+import SpotlightCard from './SpotlightCard';
 
 const Projects = () => {
+  const [selectedCategory, setSelectedCategory] = useState('All');
+  const categories = ['All', 'Cloud & DevOps', 'Networking & P2P', 'Full-Stack & APIs'];
+
   const [activeWidgets, setActiveWidgets] = useState({
     0: null, // CloudOps: 'logs' | 'arch' | null
     1: null, // PeerShare: 'arch' | 'throughput' | 'handshake' | null
@@ -30,6 +34,9 @@ const Projects = () => {
 
   const projectsList = [
     {
+      id: 0,
+      category: "Cloud & DevOps",
+      status: { label: "Open Source Pipeline", live: false },
       title: "CloudOps — Automated CI/CD Deployment Platform for AWS",
       date: "Jun 2026",
       tag: "Cloud & DevOps Platform",
@@ -46,6 +53,9 @@ const Projects = () => {
       }
     },
     {
+      id: 1,
+      category: "Networking & P2P",
+      status: { label: "Live P2P Platform", live: true },
       title: "PeerShare — Real-Time WebRTC P2P Communication Platform",
       date: "Active",
       tag: "Distributed P2P Networking",
@@ -59,10 +69,13 @@ const Projects = () => {
       ],
       links: {
         github: "https://github.com/SwamyBS-codes/PeerShare",
-        live: "https://peer-share-rho.vercel.app/"
+        live: "https://peersharep2p.vercel.app/"
       }
     },
     {
+      id: 2,
+      category: "Full-Stack & APIs",
+      status: { label: "70+ Guided Students", live: true },
       title: "KCET EduGuide — KCET Counselling & Recommendation Platform",
       date: "Active • 70+ Students Guided",
       tag: "Full-Stack EdTech & Analytics",
@@ -80,6 +93,9 @@ const Projects = () => {
       }
     },
     {
+      id: 3,
+      category: "Full-Stack & APIs",
+      status: { label: "Live Service (<1ms)", live: true },
       title: "Shortify — High-Throughput URL Shortening Platform",
       date: "Jun 2026",
       tag: "Distributed Backend & Analytics",
@@ -102,7 +118,7 @@ const Projects = () => {
     <section id="projects" className="py-24 bg-gray-950/80 relative border-t border-gray-900/80">
       <div className="max-w-6xl mx-auto px-4 sm:px-6 relative z-10">
         {/* Section Header */}
-        <div className="text-center mb-16">
+        <div className="text-center mb-10">
           <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-cyan-500/10 border border-cyan-500/20 text-cyan-400 text-xs font-mono font-medium mb-3">
             <Layers className="w-3.5 h-3.5" />
             <span>Systems & Applications</span>
@@ -110,35 +126,58 @@ const Projects = () => {
           <h2 className="text-3xl sm:text-4xl font-bold tracking-tight text-white mb-3">
             Featured Projects
           </h2>
-          <div className="w-16 h-1 bg-cyan-500 mx-auto rounded-full"></div>
+          <div className="h-[1px] w-28 bg-gradient-to-r from-transparent via-cyan-400 to-transparent mx-auto mt-2"></div>
           <p className="mt-4 text-gray-400 max-w-2xl mx-auto text-sm sm:text-base leading-relaxed">
             Practical engineering projects emphasizing automated cloud deployment pipelines, WebRTC peer-to-peer data channels, database index optimization, and high-concurrency microservices.
           </p>
         </div>
 
+        {/* 1-Click Recruiter Category Filter Pills */}
+        <div className="flex flex-wrap items-center justify-center gap-2 mb-10">
+          {categories.map((cat) => (
+            <button
+              key={cat}
+              onClick={() => setSelectedCategory(cat)}
+              className={`px-3.5 py-1.5 rounded-full text-xs font-mono font-medium transition-all cursor-pointer ${
+                selectedCategory === cat
+                  ? 'bg-cyan-500/15 text-cyan-300 border border-cyan-500/40 shadow-sm shadow-cyan-500/10'
+                  : 'bg-gray-900/60 text-gray-400 hover:text-gray-200 border border-gray-800 hover:border-gray-700'
+              }`}
+            >
+              {cat}
+            </button>
+          ))}
+        </div>
+
         {/* Projects List */}
         <div className="space-y-10">
-          {projectsList.map((project, idx) => (
+          {(selectedCategory === 'All' ? projectsList : projectsList.filter(p => p.category === selectedCategory)).map((project) => (
             <motion.div
-              key={idx}
+              key={project.id}
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              transition={{ duration: 0.5, delay: idx * 0.1 }}
-              className="p-6 md:p-8 rounded-2xl bg-gray-900/40 border border-gray-850 hover:border-gray-750 transition-all backdrop-blur-sm group"
+              transition={{ duration: 0.5, delay: project.id * 0.08 }}
             >
-              <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-8">
+              <SpotlightCard className="p-6 md:p-8 rounded-2xl bg-gray-900/40 border border-gray-850 hover:border-cyan-500/30 transition-all backdrop-blur-sm group">
+                <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-8">
                 {/* Meta Panel: cols 1-4 */}
                 <div className="lg:col-span-4 flex flex-col justify-between">
                   <div>
-                    {/* Header icon and date */}
+                    {/* Header icon, status beacon and date */}
                     <div className="flex items-center justify-between mb-4">
                       <div className="w-11 h-11 rounded-xl bg-gray-950 border border-gray-800 flex items-center justify-center group-hover:scale-105 transition-transform">
                         {project.icon}
                       </div>
-                      <span className="text-xs font-mono text-gray-400 bg-gray-950 px-2.5 py-1 rounded-md border border-gray-850">
-                        {project.date}
-                      </span>
+                      <div className="flex items-center gap-2">
+                        <span className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-md bg-gray-950 border border-gray-850 text-[11px] font-mono text-gray-300">
+                          <span className={`w-1.5 h-1.5 rounded-full ${project.status.live ? 'bg-emerald-400 animate-pulse' : 'bg-cyan-400'}`} />
+                          <span>{project.status.label}</span>
+                        </span>
+                        <span className="text-xs font-mono text-gray-400 bg-gray-950 px-2.5 py-1 rounded-md border border-gray-850">
+                          {project.date}
+                        </span>
+                      </div>
                     </div>
 
                     <span className="text-xs font-mono font-medium text-cyan-400 block mb-1">
@@ -205,14 +244,14 @@ const Projects = () => {
 
                   {/* Interactive Widgets Expand Triggers */}
                   <div className="mt-8 pt-5 border-t border-gray-850/60 flex flex-wrap gap-2.5">
-                    {/* CloudOps controls (idx 0) */}
-                    {idx === 0 && (
+                    {/* CloudOps controls (id 0) */}
+                    {project.id === 0 && (
                       <>
                         <button
                           onClick={() => toggleWidget(0, 'arch')}
                           className={`flex items-center gap-1.5 px-3 py-1.5 rounded-lg border text-xs font-mono transition-all cursor-pointer ${activeWidgets[0] === 'arch'
                               ? 'bg-cyan-500/15 border-cyan-500/40 text-cyan-400'
-                              : 'bg-gray-950 border-gray-850 text-gray-400 hover:border-gray-750 hover:text-gray-200'
+                              : 'bg-gray-950 border-gray-855 text-gray-400 hover:border-gray-750 hover:text-gray-200'
                             }`}
                         >
                           <Network className="w-3.5 h-3.5" />
@@ -222,7 +261,7 @@ const Projects = () => {
                           onClick={() => toggleWidget(0, 'logs')}
                           className={`flex items-center gap-1.5 px-3 py-1.5 rounded-lg border text-xs font-mono transition-all cursor-pointer ${activeWidgets[0] === 'logs'
                               ? 'bg-cyan-500/15 border-cyan-500/40 text-cyan-400'
-                              : 'bg-gray-950 border-gray-850 text-gray-400 hover:border-gray-750 hover:text-gray-200'
+                              : 'bg-gray-950 border-gray-855 text-gray-400 hover:border-gray-750 hover:text-gray-200'
                             }`}
                         >
                           <Terminal className="w-3.5 h-3.5" />
@@ -231,14 +270,14 @@ const Projects = () => {
                       </>
                     )}
 
-                    {/* PeerShare controls (idx 1) */}
-                    {idx === 1 && (
+                    {/* PeerShare controls (id 1) */}
+                    {project.id === 1 && (
                       <>
                         <button
                           onClick={() => toggleWidget(1, 'arch')}
                           className={`flex items-center gap-1.5 px-3 py-1.5 rounded-lg border text-xs font-mono transition-all cursor-pointer ${activeWidgets[1] === 'arch'
                               ? 'bg-indigo-500/15 border-indigo-500/40 text-indigo-400'
-                              : 'bg-gray-950 border-gray-850 text-gray-400 hover:border-gray-750 hover:text-gray-200'
+                              : 'bg-gray-950 border-gray-855 text-gray-400 hover:border-gray-750 hover:text-gray-200'
                             }`}
                         >
                           <Network className="w-3.5 h-3.5" />
@@ -248,7 +287,7 @@ const Projects = () => {
                           onClick={() => toggleWidget(1, 'throughput')}
                           className={`flex items-center gap-1.5 px-3 py-1.5 rounded-lg border text-xs font-mono transition-all cursor-pointer ${activeWidgets[1] === 'throughput'
                               ? 'bg-indigo-500/15 border-indigo-500/40 text-indigo-400'
-                              : 'bg-gray-950 border-gray-850 text-gray-400 hover:border-gray-750 hover:text-gray-200'
+                              : 'bg-gray-950 border-gray-855 text-gray-400 hover:border-gray-750 hover:text-gray-200'
                             }`}
                         >
                           <Activity className="w-3.5 h-3.5" />
@@ -258,7 +297,7 @@ const Projects = () => {
                           onClick={() => toggleWidget(1, 'handshake')}
                           className={`flex items-center gap-1.5 px-3 py-1.5 rounded-lg border text-xs font-mono transition-all cursor-pointer ${activeWidgets[1] === 'handshake'
                               ? 'bg-cyan-500/15 border-cyan-500/40 text-cyan-400'
-                              : 'bg-gray-950 border-gray-850 text-gray-400 hover:border-gray-750 hover:text-gray-200'
+                              : 'bg-gray-950 border-gray-855 text-gray-400 hover:border-gray-750 hover:text-gray-200'
                             }`}
                         >
                           <Network className="w-3.5 h-3.5" />
@@ -267,13 +306,13 @@ const Projects = () => {
                       </>
                     )}
 
-                    {/* KCET EduGuide controls (idx 2) */}
-                    {idx === 2 && (
+                    {/* KCET EduGuide controls (id 2) */}
+                    {project.id === 2 && (
                       <button
                         onClick={() => toggleWidget(2, 'simulator')}
                         className={`flex items-center gap-1.5 px-3 py-1.5 rounded-lg border text-xs font-mono transition-all cursor-pointer ${activeWidgets[2] === 'simulator'
                             ? 'bg-amber-500/15 border-amber-500/40 text-amber-400'
-                            : 'bg-gray-950 border-gray-850 text-gray-400 hover:border-gray-750 hover:text-gray-200'
+                            : 'bg-gray-950 border-gray-855 text-gray-400 hover:border-gray-750 hover:text-gray-200'
                           }`}
                       >
                         <School className="w-3.5 h-3.5" />
@@ -281,14 +320,14 @@ const Projects = () => {
                       </button>
                     )}
 
-                    {/* Shortify controls (idx 3) */}
-                    {idx === 3 && (
+                    {/* Shortify controls (id 3) */}
+                    {project.id === 3 && (
                       <>
                         <button
                           onClick={() => toggleWidget(3, 'arch')}
                           className={`flex items-center gap-1.5 px-3 py-1.5 rounded-lg border text-xs font-mono transition-all cursor-pointer ${activeWidgets[3] === 'arch'
                               ? 'bg-purple-500/15 border-purple-500/40 text-purple-400'
-                              : 'bg-gray-950 border-gray-850 text-gray-400 hover:border-gray-750 hover:text-gray-200'
+                              : 'bg-gray-950 border-gray-855 text-gray-400 hover:border-gray-750 hover:text-gray-200'
                             }`}
                         >
                           <Network className="w-3.5 h-3.5" />
@@ -298,7 +337,7 @@ const Projects = () => {
                           onClick={() => toggleWidget(3, 'api')}
                           className={`flex items-center gap-1.5 px-3 py-1.5 rounded-lg border text-xs font-mono transition-all cursor-pointer ${activeWidgets[3] === 'api'
                               ? 'bg-purple-500/15 border-purple-500/40 text-purple-400'
-                              : 'bg-gray-950 border-gray-850 text-gray-400 hover:border-gray-750 hover:text-gray-200'
+                              : 'bg-gray-950 border-gray-855 text-gray-400 hover:border-gray-750 hover:text-gray-200'
                             }`}
                         >
                           <Code className="w-3.5 h-3.5" />
@@ -308,7 +347,7 @@ const Projects = () => {
                           onClick={() => toggleWidget(3, 'schema')}
                           className={`flex items-center gap-1.5 px-3 py-1.5 rounded-lg border text-xs font-mono transition-all cursor-pointer ${activeWidgets[3] === 'schema'
                               ? 'bg-blue-500/15 border-blue-500/40 text-blue-400'
-                              : 'bg-gray-950 border-gray-850 text-gray-400 hover:border-gray-750 hover:text-gray-200'
+                              : 'bg-gray-950 border-gray-855 text-gray-400 hover:border-gray-750 hover:text-gray-200'
                             }`}
                         >
                           <Database className="w-3.5 h-3.5" />
@@ -323,7 +362,7 @@ const Projects = () => {
               {/* Rendered Interactive Sections */}
               <AnimatePresence>
                 {/* CloudOps Widgets */}
-                {idx === 0 && activeWidgets[0] === 'arch' && (
+                {project.id === 0 && activeWidgets[0] === 'arch' && (
                   <motion.div
                     initial={{ opacity: 0, height: 0 }}
                     animate={{ opacity: 1, height: 'auto' }}
@@ -334,7 +373,7 @@ const Projects = () => {
                     <ArchitectureBlueprint projectType="cloudops" />
                   </motion.div>
                 )}
-                {idx === 0 && activeWidgets[0] === 'logs' && (
+                {project.id === 0 && activeWidgets[0] === 'logs' && (
                   <motion.div
                     initial={{ opacity: 0, height: 0 }}
                     animate={{ opacity: 1, height: 'auto' }}
@@ -347,7 +386,7 @@ const Projects = () => {
                 )}
 
                 {/* PeerShare Widgets */}
-                {idx === 1 && activeWidgets[1] === 'arch' && (
+                {project.id === 1 && activeWidgets[1] === 'arch' && (
                   <motion.div
                     initial={{ opacity: 0, height: 0 }}
                     animate={{ opacity: 1, height: 'auto' }}
@@ -358,7 +397,7 @@ const Projects = () => {
                     <ArchitectureBlueprint projectType="p2p" />
                   </motion.div>
                 )}
-                {idx === 1 && activeWidgets[1] === 'throughput' && (
+                {project.id === 1 && activeWidgets[1] === 'throughput' && (
                   <motion.div
                     initial={{ opacity: 0, height: 0 }}
                     animate={{ opacity: 1, height: 'auto' }}
@@ -369,7 +408,7 @@ const Projects = () => {
                     <P2pThroughputSimulator />
                   </motion.div>
                 )}
-                {idx === 1 && activeWidgets[1] === 'handshake' && (
+                {project.id === 1 && activeWidgets[1] === 'handshake' && (
                   <motion.div
                     initial={{ opacity: 0, height: 0 }}
                     animate={{ opacity: 1, height: 'auto' }}
@@ -382,7 +421,7 @@ const Projects = () => {
                 )}
 
                 {/* KCET Widgets */}
-                {idx === 2 && activeWidgets[2] === 'simulator' && (
+                {project.id === 2 && activeWidgets[2] === 'simulator' && (
                   <motion.div
                     initial={{ opacity: 0, height: 0 }}
                     animate={{ opacity: 1, height: 'auto' }}
@@ -395,7 +434,7 @@ const Projects = () => {
                 )}
 
                 {/* Shortify Widgets */}
-                {idx === 3 && activeWidgets[3] === 'arch' && (
+                {project.id === 3 && activeWidgets[3] === 'arch' && (
                   <motion.div
                     initial={{ opacity: 0, height: 0 }}
                     animate={{ opacity: 1, height: 'auto' }}
@@ -406,7 +445,7 @@ const Projects = () => {
                     <ArchitectureBlueprint projectType="shortify" />
                   </motion.div>
                 )}
-                {idx === 3 && activeWidgets[3] === 'api' && (
+                {project.id === 3 && activeWidgets[3] === 'api' && (
                   <motion.div
                     initial={{ opacity: 0, height: 0 }}
                     animate={{ opacity: 1, height: 'auto' }}
@@ -417,7 +456,7 @@ const Projects = () => {
                     <ApiPlayground />
                   </motion.div>
                 )}
-                {idx === 3 && activeWidgets[3] === 'schema' && (
+                {project.id === 3 && activeWidgets[3] === 'schema' && (
                   <motion.div
                     initial={{ opacity: 0, height: 0 }}
                     animate={{ opacity: 1, height: 'auto' }}
@@ -429,8 +468,9 @@ const Projects = () => {
                   </motion.div>
                 )}
               </AnimatePresence>
-            </motion.div>
-          ))}
+            </SpotlightCard>
+          </motion.div>
+        ))}
         </div>
       </div>
     </section>

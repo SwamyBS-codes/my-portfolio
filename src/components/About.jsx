@@ -1,6 +1,7 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import { GraduationCap, Calendar, MapPin, Milestone, Download, FileText, CheckCircle2 } from 'lucide-react';
+import SpotlightCard from './SpotlightCard';
 
 const About = ({ openResumeModal }) => {
   const educationList = [
@@ -36,7 +37,7 @@ const About = ({ openResumeModal }) => {
           <h2 className="text-3xl sm:text-4xl font-bold tracking-tight text-white mb-3">
             About Me
           </h2>
-          <div className="w-16 h-1 bg-cyan-500 mx-auto rounded-full"></div>
+          <div className="h-[1px] w-28 bg-gradient-to-r from-transparent via-cyan-400 to-transparent mx-auto mt-2"></div>
           <p className="mt-4 text-gray-400 max-w-xl mx-auto text-sm sm:text-base leading-relaxed">
             Information Science undergraduate engineer focusing on scalable backend architectures, cloud deployment automation, and decentralized networking.
           </p>
@@ -45,7 +46,7 @@ const About = ({ openResumeModal }) => {
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
           {/* Engineering Philosophy Card */}
           <div className="lg:col-span-5 space-y-6">
-            <div className="p-6 rounded-2xl bg-gray-900/40 border border-gray-850 backdrop-blur-sm">
+            <SpotlightCard className="p-6 rounded-2xl bg-gray-900/40 border border-gray-850 hover:border-cyan-500/30 transition-all backdrop-blur-sm">
               <h3 className="text-base font-semibold text-white mb-3 flex items-center gap-2">
                 <span className="w-2 h-2 rounded-full bg-cyan-400"></span>
                 <span>Engineering Focus</span>
@@ -89,7 +90,7 @@ const About = ({ openResumeModal }) => {
                   <span>View Details</span>
                 </button>
               </div>
-            </div>
+            </SpotlightCard>
           </div>
 
           {/* Education Timeline */}
@@ -107,9 +108,9 @@ const About = ({ openResumeModal }) => {
                   whileInView={{ opacity: 1, x: 0 }}
                   viewport={{ once: true }}
                   transition={{ duration: 0.4, delay: idx * 0.1 }}
-                  className="p-6 rounded-2xl bg-gray-900/40 border border-gray-850 hover:border-gray-800 transition-all group"
                 >
-                  <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 mb-2">
+                  <SpotlightCard className="p-6 rounded-2xl bg-gray-900/40 border border-gray-850 hover:border-cyan-500/30 transition-all group">
+                    <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 mb-2">
                     <h4 className="text-base font-semibold text-white group-hover:text-cyan-400 transition-colors">
                       {item.title}
                     </h4>
@@ -147,7 +148,8 @@ const About = ({ openResumeModal }) => {
                       ))}
                     </div>
                   </div>
-                </motion.div>
+                </SpotlightCard>
+              </motion.div>
               ))}
             </div>
           </div>

@@ -4,7 +4,7 @@ import {
   Code2, Monitor, Server, Database, Cloud, Wrench, BookOpen, Layers 
 } from 'lucide-react';
 
-const Skills = () => {
+export function Skills() {
   const categories = [
     {
       id: "languages",
@@ -97,7 +97,7 @@ const Skills = () => {
           <h2 className="text-3xl sm:text-4xl font-bold tracking-tight text-white mb-3">
             Technical Skills
           </h2>
-          <div className="w-16 h-1 bg-cyan-500 mx-auto rounded-full"></div>
+          <div className="h-[1px] w-28 bg-gradient-to-r from-transparent via-cyan-400 to-transparent mx-auto mt-2"></div>
           <p className="mt-4 text-gray-400 max-w-xl mx-auto text-sm sm:text-base leading-relaxed">
             Technologies and core engineering tools separated by layer.
           </p>
@@ -112,7 +112,8 @@ const Skills = () => {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.35, delay: idx * 0.05 }}
-              className="p-6 rounded-2xl bg-gray-900/40 border border-gray-850 hover:border-gray-800 transition-colors flex flex-col justify-between"
+              whileHover={{ y: -3, transition: { duration: 0.2 } }}
+              className="p-6 rounded-2xl bg-gray-900/40 border border-gray-850 hover:border-cyan-500/40 hover:shadow-lg hover:shadow-cyan-500/5 transition-all flex flex-col justify-between"
             >
               {/* Category Header */}
               <div className="flex items-center gap-2.5 mb-5 pb-3 border-b border-gray-800/80">
@@ -127,9 +128,11 @@ const Skills = () => {
               {/* Only Logo + Name */}
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5">
                 {cat.skills.map((skill) => (
-                  <div
+                  <motion.div
                     key={skill.name}
-                    className="flex items-center gap-3 p-2.5 rounded-xl bg-gray-950/70 border border-gray-850/80 hover:border-cyan-500/40 hover:bg-gray-950 transition-all duration-150 group"
+                    whileHover={{ scale: 1.02, y: -2 }}
+                    transition={{ duration: 0.15 }}
+                    className="flex items-center gap-3 p-2.5 rounded-xl bg-gray-950/70 border border-gray-850/80 hover:border-cyan-500/40 hover:bg-gray-950 transition-all duration-150 group cursor-default"
                   >
                     <div className="w-7 h-7 rounded-lg bg-gray-900/80 border border-gray-800 p-1 flex items-center justify-center shrink-0 group-hover:scale-105 transition-transform">
                       <img
@@ -143,7 +146,7 @@ const Skills = () => {
                     <span className="text-xs sm:text-sm font-medium text-gray-200 group-hover:text-cyan-400 transition-colors truncate">
                       {skill.name}
                     </span>
-                  </div>
+                  </motion.div>
                 ))}
               </div>
             </motion.div>
@@ -178,6 +181,6 @@ const Skills = () => {
       </div>
     </section>
   );
-};
+}
 
 export default Skills;

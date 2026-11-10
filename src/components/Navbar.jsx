@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Menu, X, Terminal as TerminalIcon, FileText, Download, ArrowUpRight } from 'lucide-react';
+import { Menu, X, Sparkles, Bot, FileText, Download, ArrowUpRight } from 'lucide-react';
 import { Github, Linkedin } from './BrandIcons';
 
-const Navbar = ({ toggleTerminal, isTerminalOpen, openResumeModal }) => {
+const Navbar = ({ openChatbot, isChatbotOpen, openResumeModal }) => {
   const [isOpen, setIsOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const [activeSection, setActiveSection] = useState('home');
@@ -125,27 +125,25 @@ const Navbar = ({ toggleTerminal, isTerminalOpen, openResumeModal }) => {
               <span>Resume</span>
             </button>
 
-            {/* Terminal Button */}
+            {/* AI Assistant Button */}
             <button
-              onClick={toggleTerminal}
-              className={`flex items-center gap-1.5 px-3 py-1.5 rounded-lg border text-xs font-mono font-medium transition-colors cursor-pointer ${
-                isTerminalOpen 
-                  ? 'bg-cyan-500/15 text-cyan-400 border-cyan-500/40' 
-                  : 'bg-gray-900/60 border-gray-800 text-gray-400 hover:text-gray-200 hover:border-gray-700'
-              }`}
+              onClick={openChatbot}
+              className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg border text-xs font-mono font-medium transition-all cursor-pointer bg-gradient-to-r from-cyan-500/15 to-indigo-500/15 border-cyan-500/40 text-cyan-300 hover:border-cyan-400 hover:from-cyan-500/25 hover:to-indigo-500/25 shadow-sm shadow-cyan-500/10"
+              title="Ask Swamy's AI Assistant"
             >
-              <TerminalIcon className="w-3.5 h-3.5 text-cyan-400" />
-              <span>Terminal</span>
+              <Sparkles className="w-3.5 h-3.5 text-cyan-400" />
+              <span>Ask AI</span>
             </button>
           </div>
 
           {/* Mobile Menu Button */}
           <div className="flex sm:hidden items-center gap-2">
             <button
-              onClick={toggleTerminal}
-              className="p-2 rounded-lg bg-gray-900 border border-gray-800 text-gray-400"
+              onClick={openChatbot}
+              className="p-2 rounded-lg bg-gray-900 border border-cyan-500/30 text-cyan-400"
+              title="Ask AI"
             >
-              <TerminalIcon className="w-4 h-4 text-cyan-400" />
+              <Sparkles className="w-4 h-4 text-cyan-400" />
             </button>
             <button
               onClick={() => setIsOpen(!isOpen)}
@@ -182,6 +180,17 @@ const Navbar = ({ toggleTerminal, isTerminalOpen, openResumeModal }) => {
               ))}
 
               <hr className="border-gray-800 my-2" />
+
+              <button
+                onClick={() => {
+                  openChatbot();
+                  setIsOpen(false);
+                }}
+                className="w-full py-2.5 px-3 rounded-lg bg-gradient-to-r from-cyan-500/20 to-indigo-500/20 border border-cyan-500/30 text-cyan-300 text-xs font-semibold flex items-center justify-center gap-2"
+              >
+                <Sparkles className="w-4 h-4 text-cyan-400" />
+                <span>Ask Swamy's AI Assistant</span>
+              </button>
 
               <div className="flex items-center justify-between gap-3 pt-1">
                 <button

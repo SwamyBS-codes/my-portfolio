@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Mail, Phone, MapPin, Copy, Check, Send, Download, MessageSquare } from 'lucide-react';
 import { Github, Linkedin } from './BrandIcons';
+import SpotlightCard from './SpotlightCard';
 
 const Contact = ({ openResumeModal }) => {
   const [copiedEmail, setCopiedEmail] = useState(false);
@@ -45,7 +46,7 @@ const Contact = ({ openResumeModal }) => {
           <h2 className="text-3xl sm:text-4xl font-bold tracking-tight text-white mb-3">
             Get In Touch
           </h2>
-          <div className="w-16 h-1 bg-cyan-500 mx-auto rounded-full"></div>
+          <div className="h-[1px] w-28 bg-gradient-to-r from-transparent via-cyan-400 to-transparent mx-auto mt-2"></div>
           <p className="mt-4 text-gray-400 max-w-xl mx-auto text-sm sm:text-base leading-relaxed">
             Have questions about my projects, interested in collaborating on distributed systems, or exploring engineering opportunities? Drop me a line.
           </p>
@@ -58,7 +59,7 @@ const Contact = ({ openResumeModal }) => {
               <h3 className="text-base font-semibold text-white mb-2">Direct Contact Information</h3>
 
               {/* Email */}
-              <div className="flex items-center justify-between p-4 bg-gray-900/50 border border-gray-850 rounded-2xl group hover:border-gray-750 transition-colors">
+              <div className="flex items-center justify-between p-4 bg-gray-900/50 border border-gray-850 rounded-2xl group hover:border-cyan-500/30 transition-all">
                 <div className="flex items-center gap-3">
                   <div className="w-10 h-10 rounded-xl bg-cyan-500/10 border border-cyan-500/25 flex items-center justify-center">
                     <Mail className="w-4 h-4 text-cyan-400" />
@@ -78,7 +79,7 @@ const Contact = ({ openResumeModal }) => {
               </div>
 
               {/* Phone */}
-              <div className="flex items-center justify-between p-4 bg-gray-900/50 border border-gray-850 rounded-2xl group hover:border-gray-750 transition-colors">
+              <div className="flex items-center justify-between p-4 bg-gray-900/50 border border-gray-850 rounded-2xl group hover:border-indigo-500/30 transition-all">
                 <div className="flex items-center gap-3">
                   <div className="w-10 h-10 rounded-xl bg-indigo-500/10 border border-indigo-500/25 flex items-center justify-center">
                     <Phone className="w-4 h-4 text-indigo-400" />
@@ -98,7 +99,7 @@ const Contact = ({ openResumeModal }) => {
               </div>
 
               {/* Location */}
-              <div className="flex items-center gap-3 p-4 bg-gray-900/50 border border-gray-850 rounded-2xl">
+              <div className="flex items-center gap-3 p-4 bg-gray-900/50 border border-gray-850 rounded-2xl hover:border-purple-500/30 transition-all">
                 <div className="w-10 h-10 rounded-xl bg-purple-500/10 border border-purple-500/25 flex items-center justify-center shrink-0">
                   <MapPin className="w-4 h-4 text-purple-400" />
                 </div>
@@ -109,19 +110,35 @@ const Contact = ({ openResumeModal }) => {
               </div>
             </div>
 
-            {/* Official Resume Quick Download Box */}
-            <div className="p-4 rounded-2xl bg-gray-900/40 border border-gray-800 flex items-center justify-between gap-3">
-              <div>
-                <span className="text-xs font-semibold text-white block">Official Resume (PDF)</span>
-                <span className="text-[11px] text-gray-400 font-mono">Updated November 2026 • 110 KB</span>
-              </div>
+            {/* Quick Actions: Resume & LinkedIn Direct Connect */}
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5">
+              <a
+                href="https://linkedin.com/in/swamy-b-s-86613628b"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="p-3.5 rounded-2xl bg-gray-900/50 border border-gray-800 hover:border-cyan-500/40 flex items-center justify-between gap-3 group transition-colors"
+              >
+                <div>
+                  <span className="text-xs font-semibold text-white group-hover:text-cyan-400 transition-colors block">Connect on LinkedIn</span>
+                  <span className="text-[10px] text-gray-500 font-mono">Direct Message</span>
+                </div>
+                <div className="p-2 rounded-lg bg-indigo-500/10 border border-indigo-500/20 text-indigo-400 group-hover:bg-cyan-500/10 group-hover:text-cyan-400 transition-colors shrink-0">
+                  <Linkedin className="w-4 h-4" />
+                </div>
+              </a>
+
               <a
                 href="/resume.pdf"
                 download="Swamy_BS_Resume.pdf"
-                className="flex items-center gap-1.5 px-3.5 py-2 rounded-lg bg-cyan-500 hover:bg-cyan-400 text-gray-950 font-semibold text-xs transition-colors shrink-0"
+                className="p-3.5 rounded-2xl bg-gray-900/50 border border-gray-800 hover:border-cyan-500/40 flex items-center justify-between gap-3 group transition-colors"
               >
-                <Download className="w-3.5 h-3.5" />
-                <span>Download</span>
+                <div>
+                  <span className="text-xs font-semibold text-white group-hover:text-cyan-400 transition-colors block">Resume PDF</span>
+                  <span className="text-[10px] text-gray-500 font-mono">110 KB • 1-Click</span>
+                </div>
+                <div className="p-2 rounded-lg bg-cyan-500/10 border border-cyan-500/25 text-cyan-400 group-hover:bg-cyan-500 group-hover:text-gray-950 transition-colors shrink-0">
+                  <Download className="w-4 h-4" />
+                </div>
               </a>
             </div>
 
@@ -161,7 +178,7 @@ const Contact = ({ openResumeModal }) => {
           </div>
 
           {/* Form Side: cols 6-12 */}
-          <div className="md:col-span-7 bg-gray-900/40 border border-gray-850 rounded-2xl p-6 sm:p-8 backdrop-blur-sm">
+          <SpotlightCard className="md:col-span-7 bg-gray-900/40 border border-gray-850 rounded-2xl p-6 sm:p-8 backdrop-blur-sm hover:border-cyan-500/30 transition-all">
             <h3 className="text-base font-semibold text-white mb-6 flex items-center gap-2 pb-4 border-b border-gray-800">
               <MessageSquare className="w-4 h-4 text-cyan-400" />
               <span>Send a Message</span>
@@ -225,7 +242,7 @@ const Contact = ({ openResumeModal }) => {
                 <span>Submit Message</span>
               </button>
             </form>
-          </div>
+          </SpotlightCard>
         </div>
       </div>
     </section>

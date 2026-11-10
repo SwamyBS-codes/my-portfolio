@@ -1,6 +1,7 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import { Award, BookOpen, ExternalLink, Trophy, Code, CheckCircle2 } from 'lucide-react';
+import SpotlightCard from './SpotlightCard';
 
 const Achievements = () => {
   const achievements = [
@@ -45,34 +46,39 @@ const Achievements = () => {
           <h2 className="text-3xl sm:text-4xl font-bold tracking-tight text-white mb-3">
             Achievements & Competitions
           </h2>
-          <div className="w-16 h-1 bg-cyan-500 mx-auto rounded-full"></div>
+          <div className="h-[1px] w-28 bg-gradient-to-r from-transparent via-cyan-400 to-transparent mx-auto mt-2"></div>
           <p className="mt-4 text-gray-400 max-w-xl mx-auto text-sm sm:text-base leading-relaxed">
             Record of competitive coding tournaments, algorithmic contests, and theoretical computer science certifications.
           </p>
         </div>
 
         {/* LeetCode Profile Callout */}
-        <div className="mb-10 p-5 rounded-2xl bg-gray-900/40 border border-gray-850 flex flex-col sm:flex-row items-center justify-between gap-4">
-          <div className="flex items-center gap-3.5">
-            <div className="w-11 h-11 rounded-xl bg-amber-500/10 border border-amber-500/20 flex items-center justify-center shrink-0">
-              <Code className="w-5 h-5 text-amber-400" />
+        <SpotlightCard 
+          spotlightColor="rgba(245, 158, 11, 0.12)"
+          className="mb-10 p-5 rounded-2xl bg-gray-900/40 border border-gray-850 hover:border-amber-500/30 transition-all"
+        >
+          <div className="flex flex-col sm:flex-row items-center justify-between gap-4">
+            <div className="flex items-center gap-3.5">
+              <div className="w-11 h-11 rounded-xl bg-amber-500/10 border border-amber-500/20 flex items-center justify-center shrink-0">
+                <Code className="w-5 h-5 text-amber-400" />
+              </div>
+              <div>
+                <h3 className="text-sm sm:text-base font-semibold text-white">Active LeetCode Problem Solver</h3>
+                <p className="text-xs text-gray-400">Regularly practicing algorithms across Graphs, Dynamic Programming, and System Design</p>
+              </div>
             </div>
-            <div>
-              <h3 className="text-sm sm:text-base font-semibold text-white">Active LeetCode Problem Solver</h3>
-              <p className="text-xs text-gray-400">Regularly practicing algorithms across Graphs, Dynamic Programming, and System Design</p>
-            </div>
-          </div>
 
-          <a
-            href="https://leetcode.com/u/SwamyBS18"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="inline-flex items-center gap-1.5 px-4 py-2 rounded-xl bg-gray-950 border border-gray-800 text-xs font-semibold text-gray-200 hover:text-amber-400 hover:border-amber-500/40 transition-colors shrink-0"
-          >
-            <span>leetcode.com/u/SwamyBS18</span>
-            <ExternalLink className="w-3.5 h-3.5" />
-          </a>
-        </div>
+            <a
+              href="https://leetcode.com/u/SwamyBS18"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-1.5 px-4 py-2 rounded-xl bg-gray-950 border border-gray-800 text-xs font-semibold text-gray-200 hover:text-amber-400 hover:border-amber-500/40 transition-colors shrink-0"
+            >
+              <span>leetcode.com/u/SwamyBS18</span>
+              <ExternalLink className="w-3.5 h-3.5" />
+            </a>
+          </div>
+        </SpotlightCard>
 
         {/* Timeline */}
         <div className="relative border-l border-gray-800 ml-4 sm:ml-6 space-y-8">
@@ -91,7 +97,7 @@ const Achievements = () => {
               </div>
 
               {/* Event Card */}
-              <div className="p-6 rounded-2xl bg-gray-900/40 border border-gray-850 hover:border-gray-800 transition-all">
+              <SpotlightCard className="p-6 rounded-2xl bg-gray-900/40 border border-gray-850 hover:border-cyan-500/30 transition-all">
                 <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 mb-2">
                   <div className="flex items-center gap-2">
                     <span className="inline-block px-2.5 py-0.5 rounded-full bg-cyan-500/10 text-cyan-400 border border-cyan-500/20 text-[11px] font-mono font-medium self-start">
@@ -113,7 +119,7 @@ const Achievements = () => {
                 <p className="text-xs sm:text-sm text-gray-400 leading-relaxed">
                   {item.details}
                 </p>
-              </div>
+              </SpotlightCard>
             </motion.div>
           ))}
         </div>

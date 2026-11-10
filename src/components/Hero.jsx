@@ -1,8 +1,10 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { ArrowRight, Download, Terminal as TerminalIcon, FileText, ExternalLink, Code2, Cpu, Globe2, ShieldCheck } from 'lucide-react';
+import { ArrowRight, Download, Sparkles, FileText, Code2, Cpu, Globe2, ShieldCheck } from 'lucide-react';
+import P2PNetworkBackground from './P2PNetworkBackground';
+import SpotlightCard from './SpotlightCard';
 
-const Hero = ({ toggleTerminal, openResumeModal }) => {
+const Hero = ({ openChatbot, openResumeModal }) => {
   const highlights = [
     {
       icon: <Cpu className="w-4 h-4 text-cyan-400" />,
@@ -29,11 +31,14 @@ const Hero = ({ toggleTerminal, openResumeModal }) => {
   return (
     <section 
       id="home" 
-      className="relative min-h-[92vh] flex flex-col justify-center pt-28 pb-16 overflow-hidden bg-gray-950 bg-dot-pattern"
+      className="relative min-h-[92vh] flex flex-col justify-center pt-28 pb-16 overflow-hidden bg-gray-950/40"
     >
+      {/* Living Interactive P2P Network Topology Canvas */}
+      <P2PNetworkBackground />
+
       {/* Subtle ambient lighting */}
-      <div className="absolute top-1/4 left-1/3 w-[500px] h-[500px] bg-cyan-500/5 rounded-full blur-[140px] pointer-events-none -translate-x-1/2 -translate-y-1/2"></div>
-      <div className="absolute bottom-1/4 right-1/4 w-[400px] h-[400px] bg-indigo-500/5 rounded-full blur-[120px] pointer-events-none"></div>
+      <div className="absolute top-1/4 left-1/3 w-[500px] h-[500px] bg-cyan-500/10 rounded-full blur-[140px] pointer-events-none -translate-x-1/2 -translate-y-1/2"></div>
+      <div className="absolute bottom-1/4 right-1/4 w-[400px] h-[400px] bg-indigo-500/10 rounded-full blur-[120px] pointer-events-none"></div>
 
       <div className="max-w-5xl mx-auto px-4 sm:px-6 relative z-10 w-full text-center">
         {/* Availability Status Badge */}
@@ -49,15 +54,25 @@ const Hero = ({ toggleTerminal, openResumeModal }) => {
           <span className="text-cyan-400 font-medium">RVCE '27</span>
         </motion.div>
 
-        {/* Engineer Name */}
-        <motion.h1 
-          initial={{ opacity: 0, y: 15 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5, delay: 0.1 }}
-          className="text-4xl sm:text-6xl md:text-7xl font-extrabold tracking-tight text-white mb-4"
-        >
-          Hi, I'm <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 via-indigo-300 to-purple-400">Swamy B S</span>
-        </motion.h1>
+        {/* Engineer Name with Ambient Aurora Glow & Holographic Gradient Shimmer */}
+        <div className="relative inline-block mb-4">
+          <motion.div
+            animate={{ 
+              opacity: [0.25, 0.55, 0.25], 
+              scale: [0.95, 1.08, 0.95]
+            }}
+            transition={{ duration: 6, repeat: Infinity, ease: 'easeInOut' }}
+            className="absolute -inset-4 bg-gradient-to-r from-cyan-500/20 via-indigo-500/15 to-purple-500/20 rounded-full blur-2xl -z-10 pointer-events-none"
+          />
+          <motion.h1 
+            initial={{ opacity: 0, y: 15 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5, delay: 0.1 }}
+            className="text-4xl sm:text-6xl md:text-7xl font-extrabold tracking-tight text-white"
+          >
+            Hi, I'm <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 via-sky-200 via-indigo-300 to-cyan-400 animate-text-shimmer drop-shadow-[0_0_35px_rgba(6,182,212,0.3)]">Swamy B S</span>
+          </motion.h1>
+        </div>
 
         {/* Core Specialization Subtitle */}
         <motion.h2 
@@ -114,12 +129,12 @@ const Hero = ({ toggleTerminal, openResumeModal }) => {
           </button>
 
           <button
-            onClick={toggleTerminal}
-            className="flex items-center gap-2 px-4 py-3 rounded-xl bg-gray-950 border border-gray-800/80 hover:border-cyan-500/40 text-gray-400 hover:text-cyan-400 font-mono text-xs transition-all cursor-pointer"
-            title="Launch Interactive CLI Terminal"
+            onClick={openChatbot}
+            className="flex items-center gap-2 px-4 py-3 rounded-xl bg-gradient-to-r from-cyan-500/10 to-indigo-500/10 border border-cyan-500/30 hover:border-cyan-400 text-cyan-300 font-medium text-xs sm:text-sm transition-all cursor-pointer shadow-sm shadow-cyan-500/10 hover:shadow-cyan-500/20"
+            title="Ask Swamy's AI Assistant"
           >
-            <TerminalIcon className="w-4 h-4" />
-            <span>CLI</span>
+            <Sparkles className="w-4 h-4 text-cyan-400" />
+            <span>Ask AI Assistant</span>
           </button>
         </motion.div>
 
@@ -131,20 +146,22 @@ const Hero = ({ toggleTerminal, openResumeModal }) => {
           className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3 text-left"
         >
           {highlights.map((h, idx) => (
-            <div 
+            <motion.div 
               key={idx}
-              className="p-4 rounded-xl bg-gray-900/40 border border-gray-850 hover:border-gray-750 transition-colors"
+              whileHover={{ y: -3, transition: { duration: 0.2 } }}
             >
-              <div className="flex items-center gap-2.5 mb-1.5">
-                <div className="p-1.5 rounded-lg bg-gray-950 border border-gray-800">
-                  {h.icon}
+              <SpotlightCard className="p-4 rounded-xl bg-gray-900/50 border border-gray-850 hover:border-cyan-500/40 transition-all backdrop-blur-sm h-full">
+                <div className="flex items-center gap-2.5 mb-1.5">
+                  <div className="p-1.5 rounded-lg bg-gray-950 border border-gray-800">
+                    {h.icon}
+                  </div>
+                  <h3 className="text-xs font-semibold text-gray-200">{h.title}</h3>
                 </div>
-                <h3 className="text-xs font-semibold text-gray-200">{h.title}</h3>
-              </div>
-              <p className="text-[11px] font-mono text-gray-400 leading-tight">
-                {h.desc}
-              </p>
-            </div>
+                <p className="text-[11px] font-mono text-gray-400 leading-tight">
+                  {h.desc}
+                </p>
+              </SpotlightCard>
+            </motion.div>
           ))}
         </motion.div>
       </div>
