@@ -72,26 +72,7 @@ const Projects = () => {
         live: "https://peersharep2p.vercel.app/"
       }
     },
-    {
-      id: 2,
-      category: "Full-Stack & APIs",
-      status: { label: "70+ Guided Students", live: true },
-      title: "KCET EduGuide — KCET Counselling & Recommendation Platform",
-      date: "Active • 70+ Students Guided",
-      tag: "Full-Stack EdTech & Analytics",
-      tech: ["React.js", "Node.js", "Express.js", "MongoDB", "JWT", "Recharts", "Tailwind CSS", "AWS EC2", "AWS S3", "Vercel"],
-      icon: <School className="w-5 h-5 text-amber-400" />,
-      bullets: [
-        "Designed and launched a full-stack engineering counselling platform adopted by 70+ students to generate rank-based college and branch recommendations across 200+ Karnataka institutions.",
-        "Built an interactive React frontend featuring Recharts-powered cutoff trend analysis, automated PDF choice list generation, and multi-criteria filtering across college, branch, category, and round.",
-        "Engineered high-throughput Node.js & Express.js REST APIs with MongoDB covering rank prediction algorithms, JWT authentication, and mentor verification.",
-        "Orchestrated cloud deployment hosting the backend API on AWS EC2, JSON insight branch files on AWS S3, and client frontend on Vercel."
-      ],
-      links: {
-        github: "https://github.com/SwamyBS-codes/KCET-EduGuide",
-        live: "https://kcet-counselling-platform.vercel.app/"
-      }
-    },
+    
     {
       id: 3,
       category: "Full-Stack & APIs",
