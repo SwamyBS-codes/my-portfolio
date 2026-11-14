@@ -432,5 +432,6 @@ html, body, body * { font-family: 'Space Grotesk', sans-serif !important; }
 .cursor-glow.is-hovering { scale: 1.2; box-shadow: 0 0 10px 3px rgba(167,229,72,.95),0 0 30px 12px rgba(167,229,72,.48); }
 @media (pointer: coarse), (prefers-reduced-motion: reduce) { .cursor-glow,.cursor-trail { display: none; } }
 .hero-scene { min-height: 100vh !important; min-height: 100svh !important; box-sizing: border-box; }
+.glint-progress { height: 3px; background: #a7e548; box-shadow: 0 0 10px rgba(167,229,72,.45); }
 .portrait-frame,.portrait-frame img { -webkit-user-drag: none; user-select: none; -webkit-user-select: none; }
 .portrait-frame img { pointer-events: none; }

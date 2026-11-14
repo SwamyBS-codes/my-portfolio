@@ -58,7 +58,7 @@ function App() {
       {/* 2px Precision Reading Progress Bar */}
       <motion.div 
         style={{ scaleX }} 
-        className="fixed top-0 left-0 right-0 h-[2.5px] bg-gradient-to-r from-cyan-400 via-indigo-500 to-purple-500 origin-left z-50 pointer-events-none"
+        className="glint-progress fixed top-0 left-0 right-0 h-[2.5px] origin-left z-50 pointer-events-none"
       />
 
       {/* Modern Ambient Glow & Mesh Background Layer with Breathing Aurora Animations */}
