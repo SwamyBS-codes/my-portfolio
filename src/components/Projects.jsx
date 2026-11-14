@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import {
   ExternalLink, Cpu, Link2, Share2, Terminal, Network,
-  Code, Activity, Database, School, Layers, CheckCircle2
+  Code, Activity, Database, Layers, CheckCircle2
 } from 'lucide-react';
 import { Github } from './BrandIcons';
 import LogSimulator from './LogSimulator';
@@ -11,7 +11,6 @@ import ApiPlayground from './ApiPlayground';
 import P2pThroughputSimulator from './P2pThroughputSimulator';
 import DatabaseSchema from './DatabaseSchema';
 import WebrtcHandshake from './WebrtcHandshake';
-import KcetSimulator from './KcetSimulator';
 import SpotlightCard from './SpotlightCard';
 
 const Projects = () => {
@@ -21,7 +20,6 @@ const Projects = () => {
   const [activeWidgets, setActiveWidgets] = useState({
     0: null, // CloudOps: 'logs' | 'arch' | null
     1: null, // PeerShare: 'arch' | 'throughput' | 'handshake' | null
-    2: null, // KCET: 'simulator' | null
     3: null  // Shortify: 'arch' | 'api' | 'schema' | null
   });
 
@@ -287,20 +285,6 @@ const Projects = () => {
                       </>
                     )}
 
-                    {/* KCET EduGuide controls (id 2) */}
-                    {project.id === 2 && (
-                      <button
-                        onClick={() => toggleWidget(2, 'simulator')}
-                        className={`flex items-center gap-1.5 px-3 py-1.5 rounded-lg border text-xs font-mono transition-all cursor-pointer ${activeWidgets[2] === 'simulator'
-                            ? 'bg-amber-500/15 border-amber-500/40 text-amber-400'
-                            : 'bg-gray-950 border-gray-855 text-gray-400 hover:border-gray-750 hover:text-gray-200'
-                          }`}
-                      >
-                        <School className="w-3.5 h-3.5" />
-                        <span>{activeWidgets[2] === 'simulator' ? 'Hide Simulator' : 'Test Recommendation Simulator'}</span>
-                      </button>
-                    )}
-
                     {/* Shortify controls (id 3) */}
                     {project.id === 3 && (
                       <>
@@ -398,19 +382,6 @@ const Projects = () => {
                     className="overflow-hidden"
                   >
                     <WebrtcHandshake />
-                  </motion.div>
-                )}
-
-                {/* KCET Widgets */}
-                {project.id === 2 && activeWidgets[2] === 'simulator' && (
-                  <motion.div
-                    initial={{ opacity: 0, height: 0 }}
-                    animate={{ opacity: 1, height: 'auto' }}
-                    exit={{ opacity: 0, height: 0 }}
-                    transition={{ duration: 0.3 }}
-                    className="overflow-hidden"
-                  >
-                    <KcetSimulator />
                   </motion.div>
                 )}
 

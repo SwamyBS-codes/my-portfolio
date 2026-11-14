@@ -59,17 +59,7 @@ You have complete, verified, authoritative knowledge about Swamy B S:
    - GitHub: https://github.com/SwamyBS-codes/PeerShare
    - Live Demo: https://peersharep2p.vercel.app/
 
-3. KCET EduGuide — Counselling & College Recommendation Platform
-   - Tech: React.js, Node.js, Express.js, MongoDB, JWT, Recharts, Tailwind CSS, AWS EC2, AWS S3, Vercel
-   - Architecture & Impact:
-     * Adopted by 70+ students to generate rank-based college and branch recommendations across 200+ Karnataka institutions.
-     * Interactive Recharts cutoff visualizations, automated PDF choice list generation, and 5-criteria multi-filtering.
-     * Node.js / Express REST APIs with MongoDB covering recommendations, JWT auth, and mentor verification.
-     * Deployed backend on AWS EC2, JSON insight branch files on AWS S3, and frontend on Vercel.
-   - GitHub: https://github.com/SwamyBS-codes/KCET-EduGuide
-   - Live Demo: https://kcet-counselling-platform.vercel.app/
-
-4. Shortify — High-Throughput URL Shortening Platform
+3. Shortify — High-Throughput URL Shortening Platform
    - Tech: React.js, Node.js, Express.js, PostgreSQL, Redis, JWT, Docker, Tailwind CSS
    - Architecture & Impact:
      * Custom aliases, password protection, expiration scheduling, and automated QR code generation.
@@ -455,25 +445,7 @@ export function generateAiResponse(userMessage) {
 * **Links**: [Live Demo](https://peersharep2p.vercel.app/) • [GitHub Repository](https://github.com/SwamyBS-codes/PeerShare)`;
   }
 
-  // 3. KCET EduGuide Inquiry
-  if (
-    query.includes('kcet') || 
-    query.includes('eduguide') || 
-    query.includes('counselling') || 
-    query.includes('college recommendation')
-  ) {
-    return `### **KCET EduGuide — Counselling Recommendation Platform**
-
-**KCET EduGuide** is a full-stack edtech platform built by Swamy that has mentored **70+ students**:
-
-* **Personalized Recommendation Algorithm**: Analyzes student KCET ranks against historical multi-round cutoff trends to suggest optimal college and branch options across 200+ Karnataka institutions.
-* **Interactive Frontend**: Built in **React.js** featuring interactive cutoff trends visualization using **Recharts**, automated PDF choice list generation, and advanced 5-criteria filters (college, branch, category, location, and round).
-* **Backend Architecture**: REST APIs written in **Node.js & Express.js** with **MongoDB** handling rank prediction algorithms, JWT authentication, and mentor meeting coordination.
-* **Cloud Infrastructure**: Deployed on **AWS EC2** for the backend API, **AWS S3** for college insight JSON assets, and **Vercel** for the client frontend.
-* **Links**: [Live Application](https://kcet-counselling-platform.vercel.app/) • [GitHub Repository](https://github.com/SwamyBS-codes/KCET-EduGuide)`;
-  }
-
-  // 4. Shortify Inquiry
+  // 3. Shortify Inquiry
   if (
     query.includes('shortify') || 
     query.includes('url shortener') || 
@@ -512,11 +484,7 @@ Swamy has engineered four major systems spanning cloud automation, distributed P
    * 64KB chunking, SHA-256 verification, Web Worker offloading.
    * *Stack: WebRTC DataChannels, Node.js, Socket.io, React.js.*
 
-3. **KCET EduGuide (Counselling Platform)**:
-   * Used by 70+ students for personalized college cutoff recommendations across 200+ colleges.
-   * *Stack: React.js, Node.js, Express, MongoDB, AWS EC2, S3, Recharts.*
-
-4. **Shortify (High-Throughput URL Shortener)**:
+3. **Shortify (High-Throughput URL Shortener)**:
    * Sub-millisecond redirects using PostgreSQL indexing and Redis cache-aside architecture.
    * *Stack: React.js, Node.js, PostgreSQL, Redis, Docker, JWT.*
 
@@ -643,7 +611,7 @@ Swamy's verified 1-page software engineering resume is available for preview and
 * **Direct Download**: [Download Swamy_BS_Resume.pdf](/resume.pdf)
 * **Highlights Summary**:
   * RV College of Engineering (B.E. ISE, CGPA: 8.48/10)
-  * Flagship Projects: CloudOps (AWS CI/CD), PeerShare (WebRTC P2P), KCET EduGuide, Shortify
+  * Flagship Projects: CloudOps (AWS CI/CD), PeerShare (WebRTC P2P), Shortify
   * 2x Coding Competition Runner-Up & NPTEL Certified`;
   }
 
@@ -666,7 +634,7 @@ Swamy's verified 1-page software engineering resume is available for preview and
 * **Notable Work**:
   * Engineered **CloudOps**, an automated AWS CI/CD pipeline cutting deployment times to under 60 seconds.
   * Built **PeerShare**, a decentralized browser-to-browser P2P file sharing network using WebRTC and Web Workers.
-  * Developed **KCET EduGuide**, a recommendation engine used by 70+ students.
+  * Built **Shortify**, a high-throughput URL platform optimized for sub-millisecond lookups.
 * **Competitive Problem Solver**: 2x Inter-College contest runner-up (Coding Chef & KLE) and active on LeetCode ([SwamyBS18](https://leetcode.com/u/SwamyBS18)).
 
 *What would you like to explore first? His projects, skills, or contact info?*`;
@@ -684,7 +652,7 @@ Swamy's verified 1-page software engineering resume is available for preview and
 
 I have complete knowledge of Swamy's:
 * **Background & Academics** (RV College of Engineering, 8.48 CGPA)
-* **Flagship Projects** (CloudOps, PeerShare WebRTC, KCET EduGuide, Shortify)
+* **Flagship Projects** (CloudOps, PeerShare WebRTC, Shortify)
 * **Technical Skills** (C++, Node.js, Docker, AWS, WebRTC, PostgreSQL, Redis)
 * **Achievements** (Coding Chef Runner-Up, KLE Runner-Up, LeetCode)
 

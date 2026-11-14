@@ -10,6 +10,7 @@ import Achievements from './components/Achievements';
 import Contact from './components/Contact';
 import AiChatbot from './components/AiChatbot';
 import ResumeModal from './components/ResumeModal';
+import CursorEffect from './components/CursorEffect';
 
 function App() {
   const [isChatbotOpen, setIsChatbotOpen] = useState(false);
@@ -53,6 +54,7 @@ function App() {
 
   return (
     <div className="bg-modern-obsidian text-gray-100 min-h-screen relative selection:bg-cyan-500/30 selection:text-cyan-200 font-sans">
+      <CursorEffect />
       {/* 2px Precision Reading Progress Bar */}
       <motion.div 
         style={{ scaleX }} 

@@ -1,4 +1,5 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
+import { createPortal } from 'react-dom';
 import { motion, AnimatePresence } from 'framer-motion';
 import { 
   X, Download, ExternalLink, FileText, Check, Copy, GraduationCap, 
@@ -8,6 +9,20 @@ import {
 const ResumeModal = ({ isOpen, onClose }) => {
   const [activeTab, setActiveTab] = useState('overview'); // 'overview' | 'pdf'
   const [copied, setCopied] = useState(false);
+
+  useEffect(() => {
+    if (!isOpen) return undefined;
+    const previousOverflow = document.body.style.overflow;
+    document.body.style.overflow = 'hidden';
+    const handleKeyDown = (event) => {
+      if (event.key === 'Escape') onClose();
+    };
+    window.addEventListener('keydown', handleKeyDown);
+    return () => {
+      document.body.style.overflow = previousOverflow;
+      window.removeEventListener('keydown', handleKeyDown);
+    };
+  }, [isOpen, onClose]);
 
   if (!isOpen) return null;
 
@@ -27,14 +42,18 @@ const ResumeModal = ({ isOpen, onClose }) => {
   ];
 
   return (
-    <AnimatePresence>
-      <div className="fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-6 overflow-y-auto bg-black/80 backdrop-blur-sm">
+    createPortal(<AnimatePresence>
+      <div className="resume-backdrop fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-6 overflow-y-auto bg-black/80 backdrop-blur-sm" onMouseDown={(event) => { if (event.target === event.currentTarget) onClose(); }}>
         <motion.div
           initial={{ opacity: 0, scale: 0.96 }}
           animate={{ opacity: 1, scale: 1 }}
           exit={{ opacity: 0, scale: 0.96 }}
           transition={{ duration: 0.2 }}
-          className="relative w-full max-w-4xl max-h-[92vh] flex flex-col bg-gray-950 border border-gray-800 rounded-2xl shadow-2xl overflow-hidden"
+          className="resume-dialog relative w-full max-w-4xl max-h-[92vh] flex flex-col bg-gray-950 border border-gray-800 rounded-2xl shadow-2xl overflow-hidden"
+          role="dialog"
+          aria-modal="true"
+          aria-labelledby="resume-dialog-title"
+          onMouseDown={(event) => event.stopPropagation()}
         >
           {/* Modal Header */}
           <div className="px-6 py-4 bg-gray-900/90 border-b border-gray-800 flex items-center justify-between shrink-0">
@@ -43,7 +62,7 @@ const ResumeModal = ({ isOpen, onClose }) => {
                 <FileText className="w-5 h-5" />
               </div>
               <div>
-                <h2 className="text-white font-semibold text-base sm:text-lg">
+                <h2 id="resume-dialog-title" className="text-white font-semibold text-base sm:text-lg">
                   Swamy B S — Software Engineering Resume
                 </h2>
                 <p className="text-xs text-gray-400 font-mono">
@@ -209,14 +228,6 @@ const ResumeModal = ({ isOpen, onClose }) => {
                     </div>
 
                     <div className="p-3.5 rounded-lg bg-gray-950 border border-gray-800">
-                      <h4 className="text-sm font-semibold text-white mb-1">KCET EduGuide Platform</h4>
-                      <p className="text-xs text-gray-400 leading-relaxed mb-2">
-                        Counselling recommendation engine adopted by 70+ students to generate rank-based choices across 200+ colleges with Recharts trend analysis.
-                      </p>
-                      <div className="text-[10px] font-mono text-cyan-400">React.js • Node.js • MongoDB • AWS S3/EC2</div>
-                    </div>
-
-                    <div className="p-3.5 rounded-lg bg-gray-950 border border-gray-800">
                       <h4 className="text-sm font-semibold text-white mb-1">Shortify URL Platform</h4>
                       <p className="text-xs text-gray-400 leading-relaxed mb-2">
                         PostgreSQL-indexed resolution with Redis cache-aside architecture achieving sub-millisecond lookups and reducing database load by &gt;80%.
@@ -265,7 +276,7 @@ const ResumeModal = ({ isOpen, onClose }) => {
           </div>
         </motion.div>
       </div>
-    </AnimatePresence>
+    </AnimatePresence>, document.body)
   );
 };
 

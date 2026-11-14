@@ -40,7 +40,7 @@ const AiChatbot = ({ isOpen, onToggle, onClose }) => {
     {
       id: 'welcome',
       sender: 'ai',
-      text: "👋 Hi! I'm **Swamy's Portfolio AI**.\n\nI have complete knowledge of Swamy's verified resume, academics at **RV College of Engineering**, and all flagship projects (**CloudOps**, **PeerShare WebRTC**, **KCET EduGuide**, **Shortify**).\n\nYou can ask me **ANY question** — from deep technical architecture and code logic to career opportunities and interview questions!",
+      text: "👋 Hi! I'm **Swamy's Portfolio AI**.\n\nI have complete knowledge of Swamy's verified resume, academics at **RV College of Engineering**, and all flagship projects (**CloudOps**, **PeerShare WebRTC**, **Shortify**).\n\nYou can ask me **ANY question** — from deep technical architecture and code logic to career opportunities and interview questions!",
       timestamp: new Date()
     }
   ]);
@@ -273,7 +273,7 @@ const AiChatbot = ({ isOpen, onToggle, onClose }) => {
           onClick={onToggle}
           whileHover={{ scale: 1.05 }}
           whileTap={{ scale: 0.95 }}
-          className="relative flex items-center gap-2.5 px-4 py-3 rounded-full bg-gradient-to-r from-cyan-500 via-indigo-600 to-purple-600 text-white font-medium text-xs sm:text-sm shadow-xl shadow-cyan-500/25 border border-white/20 cursor-pointer group backdrop-blur-md"
+          className="chat-launcher relative flex items-center gap-2.5 px-4 py-3 rounded-full bg-gradient-to-r from-cyan-500 via-indigo-600 to-purple-600 text-white font-medium text-xs sm:text-sm shadow-xl shadow-cyan-500/25 border border-white/20 cursor-pointer group backdrop-blur-md"
         >
           <div className="relative">
             <Bot className="w-5 h-5 text-white" />
@@ -292,7 +292,7 @@ const AiChatbot = ({ isOpen, onToggle, onClose }) => {
             animate={{ opacity: 1, y: 0, scale: 1 }}
             exit={{ opacity: 0, y: 25, scale: 0.95 }}
             transition={{ duration: 0.25 }}
-            className="fixed bottom-20 right-4 sm:right-6 z-50 w-[94vw] sm:w-[480px] h-[640px] max-h-[85vh] flex flex-col bg-gray-950/95 border border-gray-800 rounded-2xl shadow-2xl backdrop-blur-2xl overflow-hidden"
+            className="chat-panel fixed bottom-20 right-4 sm:right-6 z-50 w-[94vw] sm:w-[480px] h-[640px] max-h-[85vh] flex flex-col bg-gray-950/95 border border-gray-800 rounded-2xl shadow-2xl backdrop-blur-2xl overflow-hidden"
           >
             {/* Header */}
             <div className="px-4 py-3 bg-gray-900/90 border-b border-gray-800 flex items-center justify-between shrink-0">
